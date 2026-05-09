@@ -51,7 +51,7 @@
     box-shadow: 0 0 0 4px color-mix(in srgb, #388E3C 18%, transparent);
   }
 
-  .email-card {
+  .contact-form-card {
     background: #fff;
     border: 1px solid var(--hairline);
     border-radius: 20px;
@@ -60,7 +60,7 @@
     position: relative;
     overflow: hidden;
   }
-  .email-card::before {
+  .contact-form-card::before {
     content: "";
     position: absolute;
     top: -40%;
@@ -70,29 +70,77 @@
     pointer-events: none;
     filter: blur(8px);
   }
-  .email-card__label {
+  .contact-form-card p {
     font-size: 12.5px;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent-deep);
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     position: relative;
   }
-  .email-card__email {
-    display: block;
-    font-size: clamp(22px, 2.5vw, 28px);
-    font-weight: 700;
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-field label {
+    font-size: 13px;
+    font-weight: 600;
     color: var(--dark);
-    letter-spacing: -0.015em;
-    margin: 0 0 22px;
-    word-break: break-all;
-    text-decoration: none;
-    position: relative;
   }
-  .email-card__email:hover { color: var(--accent-deep); text-decoration: none; }
-  .email-card__cta {
-    display: inline-flex;
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--r-button);
+    padding: 10px 14px;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23757575' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+  .form-field textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: var(--text-muted);
+  }
+  .form-submit {
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
@@ -101,35 +149,47 @@
     border-radius: var(--r-button);
     background: var(--accent);
     color: #fff;
+    font-family: inherit;
     font-weight: 600;
     font-size: 15px;
-    text-decoration: none;
+    border: 0;
+    cursor: pointer;
     transition: transform 120ms ease, background 160ms ease;
     box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 6px 18px color-mix(in srgb, var(--accent) 35%, transparent);
-    position: relative;
+    width: 100%;
+    margin-top: 4px;
   }
-  .email-card__cta:hover { background: var(--accent-deep); transform: translateY(-1px); text-decoration: none; }
-  .email-card__cta svg { width: 18px; height: 18px; }
-  .email-card__copy {
-    margin-left: 12px;
-    height: 52px;
-    padding: 0 18px;
-    border-radius: var(--r-button);
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--hairline-strong);
-    font-weight: 600;
+  .form-submit:hover { background: var(--accent-deep); transform: translateY(-1px); }
+  .form-submit svg { width: 17px; height: 17px; }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 24px 0 8px;
+  }
+  .form-success__icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #E8F5E9;
+    color: #388E3C;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 14px;
+  }
+  .form-success__icon svg { width: 24px; height: 24px; }
+  .form-success h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 0 0 8px;
+  }
+  .form-success p {
     font-size: 14px;
-    cursor: pointer;
-    transition: border-color 160ms ease, color 160ms ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: inherit;
+    color: var(--text-muted);
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 400;
+    margin: 0;
   }
-  .email-card__copy:hover { border-color: var(--dark); }
-  .email-card__copy.is-copied { color: #388E3C; border-color: #388E3C; }
-  .email-card__copy svg { width: 14px; height: 14px; }
 
   /* Topics grid */
   .topics {
@@ -229,7 +289,7 @@
   @media (max-width: 880px) {
     .support-hero__inner { grid-template-columns: 1fr; }
     .topics__grid { grid-template-columns: 1fr; }
-    .email-card__copy { margin-left: 0; margin-top: 10px; }
+    .form-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -260,21 +320,54 @@
     <div>
       <span class="page-header__eyebrow">Support</span>
       <h1>We're here to help.</h1>
-      <p class="support-hero__lede">Have a question, found a bug, or want to report incorrect place information? Send us an email — a real human will read it.</p>
+      <p class="support-hero__lede">Have a question, found a bug, or want to report incorrect place information? Fill in the form — a real human will read it.</p>
       <div class="support-hero__sla">We aim to respond within 2 business days.</div>
     </div>
 
-    <div class="email-card">
-      <p class="email-card__label">Email us</p>
-      <a class="email-card__email" href="mailto:support@thailandbiker.club">support@thailandbiker.club</a>
-      <a class="email-card__cta" href="mailto:support@thailandbiker.club">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
-        Open email
-      </a>
-      <button class="email-card__copy" id="copy-email" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-        <span>Copy address</span>
-      </button>
+    <div class="contact-form-card">
+      <p>Send us a message</p>
+      <form class="contact-form" id="contact-form" action="https://submit-form.com/94dXPGMvp" method="POST">
+        <input type="hidden" name="_redirect" value="false">
+        <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic" required>
+            <option value="" disabled selected>Select a topic…</option>
+            <option>General question</option>
+            <option>Bug report</option>
+            <option>Incorrect place information</option>
+            <option>Account issue</option>
+            <option>Inappropriate content</option>
+            <option>Privacy request</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Describe your issue or question…" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          Send message
+        </button>
+      </form>
+      <div class="form-success" id="form-success">
+        <div class="form-success__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Message sent!</h3>
+        <p>We'll get back to you within 2 business days.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -382,19 +475,30 @@
 <script src="assets/legal.js"></script>
 <script>
 (function () {
-  const btn = document.getElementById('copy-email');
-  if (!btn) return;
-  btn.addEventListener('click', async () => {
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+  if (!form) return;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
     try {
-      await navigator.clipboard.writeText('support@thailandbiker.club');
-      btn.classList.add('is-copied');
-      btn.querySelector('span').textContent = 'Copied!';
-      setTimeout(() => {
-        btn.classList.remove('is-copied');
-        btn.querySelector('span').textContent = 'Copy address';
-      }, 1800);
-    } catch (e) {
-      btn.querySelector('span').textContent = 'Press Ctrl+C';
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Send message';
+      alert('Something went wrong. Please try again.');
     }
   });
 })();
