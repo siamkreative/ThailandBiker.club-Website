@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Support — ThailandBiker.club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/legal.css">
+<style>
+  /* Support-specific layout: prominent email card */
+  .support-hero {
+    background: var(--bg);
+    padding: clamp(48px, 7vw, 88px) 0 clamp(56px, 7vw, 96px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .support-hero__inner {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .support-hero h1 {
+    font-size: clamp(40px, 5.5vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 18px 0 16px;
+    text-wrap: balance;
+  }
+  .support-hero__lede {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin: 0 0 28px;
+    max-width: 48ch;
+    text-wrap: pretty;
+  }
+  .support-hero__sla {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+  .support-hero__sla::before {
+    content: "";
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #388E3C;
+    box-shadow: 0 0 0 4px color-mix(in srgb, #388E3C 18%, transparent);
+  }
+
+  .email-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .email-card::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 65%);
+    pointer-events: none;
+    filter: blur(8px);
+  }
+  .email-card__label {
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin: 0 0 14px;
+    position: relative;
+  }
+  .email-card__email {
+    display: block;
+    font-size: clamp(22px, 2.5vw, 28px);
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.015em;
+    margin: 0 0 22px;
+    word-break: break-all;
+    text-decoration: none;
+    position: relative;
+  }
+  .email-card__email:hover { color: var(--accent-deep); text-decoration: none; }
+  .email-card__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 52px;
+    padding: 0 24px;
+    border-radius: var(--r-button);
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform 120ms ease, background 160ms ease;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 6px 18px color-mix(in srgb, var(--accent) 35%, transparent);
+    position: relative;
+  }
+  .email-card__cta:hover { background: var(--accent-deep); transform: translateY(-1px); text-decoration: none; }
+  .email-card__cta svg { width: 18px; height: 18px; }
+  .email-card__copy {
+    margin-left: 12px;
+    height: 52px;
+    padding: 0 18px;
+    border-radius: var(--r-button);
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--hairline-strong);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 160ms ease, color 160ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+  }
+  .email-card__copy:hover { border-color: var(--dark); }
+  .email-card__copy.is-copied { color: #388E3C; border-color: #388E3C; }
+  .email-card__copy svg { width: 14px; height: 14px; }
+
+  /* Topics grid */
+  .topics {
+    padding: clamp(56px, 7vw, 88px) 0;
+  }
+  .topics__head {
+    margin-bottom: 40px;
+  }
+  .topics__label {
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .topics__title {
+    font-size: clamp(28px, 3.5vw, 36px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 0;
+  }
+  .topics__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .topic {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-card);
+    padding: 28px;
+    transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  }
+  .topic:hover {
+    border-color: var(--hairline-strong);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .topic__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+  }
+  .topic__icon svg { width: 20px; height: 20px; }
+  .topic h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 0 0 10px;
+    letter-spacing: -0.005em;
+  }
+  .topic p, .topic li {
+    color: var(--text-soft);
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin: 0 0 8px;
+  }
+  .topic ul { padding-left: 18px; margin: 0; }
+  .topic ul li::marker { color: var(--accent); }
+  .topic strong { color: var(--text); font-weight: 600; }
+  .topic a { color: var(--accent-deep); font-weight: 500; }
+
+  /* Bug-report block */
+  .bugreport {
+    background: var(--bg);
+    border-radius: var(--r-card);
+    padding: 28px 32px;
+    margin-top: 32px;
+  }
+  .bugreport h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 0 0 12px;
+  }
+  .bugreport ul { padding-left: 20px; margin: 0; color: var(--text-soft); font-size: 14.5px; }
+  .bugreport li { margin-bottom: 6px; }
+  .bugreport li::marker { color: var(--accent); }
+
+  .closing {
+    text-align: center;
+    padding: 32px 0 8px;
+    color: var(--text-muted);
+    font-size: 14.5px;
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 880px) {
+    .support-hero__inner { grid-template-columns: 1fr; }
+    .topics__grid { grid-template-columns: 1fr; }
+    .email-card__copy { margin-left: 0; margin-top: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="logo">
+      <span class="logo__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6" cy="16" r="3.5"></circle>
+          <circle cx="18" cy="16" r="3.5"></circle>
+          <path d="M6 16l3-7h4l4 7M9 9l-1-3h-2"></path>
+        </svg>
+      </span>
+      <span class="logo__name"><b>ThailandBiker</b><span>.club</span></span>
+    </a>
+    <a href="index.html" class="nav__back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to home
+    </a>
+    <a href="index.html#download" class="btn btn--primary">Download</a>
+  </div>
+</header>
+
+<section class="support-hero">
+  <div class="container support-hero__inner">
+    <div>
+      <span class="page-header__eyebrow">Support</span>
+      <h1>We're here to help.</h1>
+      <p class="support-hero__lede">Have a question, found a bug, or want to report incorrect place information? Send us an email — a real human will read it.</p>
+      <div class="support-hero__sla">We aim to respond within 2 business days.</div>
+    </div>
+
+    <div class="email-card">
+      <p class="email-card__label">Email us</p>
+      <a class="email-card__email" href="mailto:support@thailandbiker.club">support@thailandbiker.club</a>
+      <a class="email-card__cta" href="mailto:support@thailandbiker.club">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        Open email
+      </a>
+      <button class="email-card__copy" id="copy-email" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+        <span>Copy address</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="topics">
+  <div class="container">
+    <div class="topics__head">
+      <p class="topics__label">Common topics</p>
+      <h2 class="topics__title">Find what you need, fast.</h2>
+    </div>
+
+    <div class="topics__grid">
+
+      <article class="topic">
+        <div class="topic__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3>Reporting incorrect place information</h3>
+        <p>If a place listing has wrong hours, a disconnected phone number, or is permanently closed, email us at <a href="mailto:support@thailandbiker.club">support@thailandbiker.club</a> with the place name and what needs to be corrected. We'll update or remove it promptly.</p>
+      </article>
+
+      <article class="topic">
+        <div class="topic__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h3>Account issues</h3>
+        <ul>
+          <li><strong>Forgot your password:</strong> Use the "Forgot Password" option on the sign-in screen to receive a reset link by email.</li>
+          <li><strong>Can't sign in with Google or Facebook:</strong> Ensure the ThailandBiker.club app has permission to access your account in your device's app settings.</li>
+          <li><strong>Delete your account:</strong> Email <a href="mailto:support@thailandbiker.club?subject=Account%20Deletion%20Request">support@thailandbiker.club</a> with the subject "Account Deletion Request". We will permanently delete your account and associated data within 30 days.</li>
+        </ul>
+      </article>
+
+      <article class="topic">
+        <div class="topic__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+            <path d="M12 9v4M12 17h.01"/>
+          </svg>
+        </div>
+        <h3>Reporting inappropriate content</h3>
+        <p>If you see content that violates our <a href="terms-of-use.html">Terms of Use</a>, please email <a href="mailto:support@thailandbiker.club">support@thailandbiker.club</a> with a description and, if possible, a screenshot.</p>
+      </article>
+
+      <article class="topic">
+        <div class="topic__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0110 0v4"/>
+          </svg>
+        </div>
+        <h3>Privacy requests</h3>
+        <p>To access, correct, or request deletion of your personal data, see our <a href="privacy-policy.html">Privacy Policy</a> or email <a href="mailto:privacy@thailandbiker.club">privacy@thailandbiker.club</a>.</p>
+      </article>
+    </div>
+
+    <div class="bugreport">
+      <h3>Reporting a bug? Please include:</h3>
+      <ul>
+        <li>Your device model and OS version (e.g. iPhone 15, iOS 17.4)</li>
+        <li>The app version (found in Settings within the app)</li>
+        <li>A description of what happened and what you expected</li>
+      </ul>
+    </div>
+
+    <p class="closing">ThailandBiker.club is a community-driven project. We appreciate your feedback and patience.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="logo">
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="6" cy="16" r="3.5"></circle>
+              <circle cx="18" cy="16" r="3.5"></circle>
+              <path d="M6 16l3-7h4l4 7M9 9l-1-3h-2"></path>
+            </svg>
+          </span>
+          <span class="logo__name"><b>ThailandBiker</b><span>.club</span></span>
+        </a>
+        <p class="footer__tagline">Your ultimate riding companion. The directory of places, trips, events, and guides for motorcycle riders in Thailand.</p>
+      </div>
+      <div class="footer__links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="support.html">Support</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__bottom-mark">© 2026 ThailandBiker.club</span>
+      <span>Ride safe. Wear gear. ATGATT.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/legal.js"></script>
+<script>
+(function () {
+  const btn = document.getElementById('copy-email');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('support@thailandbiker.club');
+      btn.classList.add('is-copied');
+      btn.querySelector('span').textContent = 'Copied!';
+      setTimeout(() => {
+        btn.classList.remove('is-copied');
+        btn.querySelector('span').textContent = 'Copy address';
+      }, 1800);
+    } catch (e) {
+      btn.querySelector('span').textContent = 'Press Ctrl+C';
+    }
+  });
+})();
+</script>
+</body>
+</html>
