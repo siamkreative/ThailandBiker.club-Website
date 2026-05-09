@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thailandbiker.club/sitemap.xml
