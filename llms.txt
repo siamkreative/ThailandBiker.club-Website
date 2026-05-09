@@ -1,0 +1,29 @@
+# ThailandBiker.club
+
+> The ultimate riding companion for motorcycle enthusiasts in Thailand. Discover curated routes, riding spots, events, and practical guides built for the expat biker community.
+
+## About
+
+ThailandBiker.club is a mobile app and companion website that helps motorcycle riders navigate the Thai riding scene. All listings are rider-reviewed before going live.
+
+## Pages
+
+- [Home](https://thailandbiker.club/): App overview, features, screenshots, and download links
+- [Support](https://thailandbiker.club/support.html): Contact form and help resources
+- [Privacy Policy](https://thailandbiker.club/privacy-policy.html): Data collection and PDPA compliance
+- [Terms of Use](https://thailandbiker.club/terms-of-use.html): App and website usage conditions
+
+## App Features
+
+- **Places** — Find dealerships, garages, gear shops, and rentals with rider-verified listings
+- **Trips** — Curated scenic routes across Thailand with elevation, twistiness ratings, and rider notes
+- **Events** — Local riding community meets, rallies, charity rides, and shop nights sorted by region and date
+- **Guides** — Practical information for foreign riders: licenses, insurance, bike importing, customs, and accident advice
+
+## Target Audience
+
+Expatriate and foreign motorcycle riders living in or visiting Thailand. Also relevant to local Thai riders seeking a curated, community-reviewed directory.
+
+## Contact
+
+Support: [https://thailandbiker.club/support.html](https://thailandbiker.club/support.html)
