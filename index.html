@@ -32,7 +32,7 @@
 <link rel="preload" as="image" href="images/screen-home.webp" type="image/webp">
 
 <!-- Favicon -->
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32 16x16" type="image/x-icon">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <script type="application/ld+json">
@@ -49,7 +49,7 @@
     "@type": "Organization",
     "name": "ThailandBiker.club",
     "url": "https://thailandbiker.club",
-    "logo": "https://thailandbiker.club/favicon.svg",
+    "logo": "https://thailandbiker.club/apple-touch-icon.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer support",
@@ -148,15 +148,11 @@
     color: #fff;
   }
   .logo__mark {
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    background: var(--accent);
-    display: grid;
-    place-items: center;
-    color: #fff;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    width: 40px; height: 40px;
+    flex-shrink: 0;
+    line-height: 0;
   }
-  .logo__mark svg { width: 16px; height: 16px; }
+  .logo__mark img { width: 100%; height: 100%; }
   .logo__name b { font-weight: 800; }
   .logo__name span { color: rgba(255,255,255,0.6); font-weight: 500; }
 
@@ -680,11 +676,7 @@
   <div class="container nav__inner">
     <a href="/" class="logo">
       <span class="logo__mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="6" cy="16" r="3.5"></circle>
-          <circle cx="18" cy="16" r="3.5"></circle>
-          <path d="M6 16l3-7h4l4 7M9 9l-1-3h-2"></path>
-        </svg>
+        <img src="/logo.png" alt="" width="40" height="40">
       </span>
       <span class="logo__name"><b>ThailandBiker</b><span>.club</span></span>
     </a>
@@ -969,11 +961,7 @@
       <div class="footer__brand">
         <a href="/" class="logo">
           <span class="logo__mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="6" cy="16" r="3.5"></circle>
-              <circle cx="18" cy="16" r="3.5"></circle>
-              <path d="M6 16l3-7h4l4 7M9 9l-1-3h-2"></path>
-            </svg>
+            <img src="/logo.png" alt="" width="40" height="40">
           </span>
           <span class="logo__name"><b>ThailandBiker</b><span>.club</span></span>
         </a>
