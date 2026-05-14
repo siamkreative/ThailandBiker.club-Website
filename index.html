@@ -667,6 +667,84 @@
     .hero__phones .phone--right { transform: translate(44%, 56px) rotate(6deg) scale(0.62); }
     .phone { width: 230px; }
   }
+
+  /* ======== WAITLIST MODAL ======== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.is-open {
+    display: flex;
+  }
+  .modal {
+    background: var(--surface);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 640px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    animation: modal-in 220ms cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes modal-in {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal__header {
+    padding: 28px 28px 0;
+    position: relative;
+    text-align: center;
+  }
+  .modal__title {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+  }
+  .modal__sub {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .modal__close {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--hairline);
+    background: transparent;
+    display: grid;
+    place-items: center;
+    color: var(--text-muted);
+    transition: background 140ms ease, color 140ms ease;
+  }
+  .modal__close:hover { background: var(--bg); color: var(--dark); }
+  .modal__close svg { width: 16px; height: 16px; }
+  .modal__body {
+    padding: 20px 28px 28px;
+  }
+  .modal__body iframe {
+    width: 100%;
+    border: none;
+    min-height: 440px;
+    display: block;
+  }
+  @media (max-width: 640px) {
+    .modal { border-radius: 12px; }
+    .modal__header { padding: 22px 20px 0; }
+    .modal__body { padding: 16px 20px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -980,6 +1058,26 @@
   </div>
 </footer>
 
+<!-- ============== WAITLIST MODAL ============== -->
+<div class="modal-overlay" id="waitlist-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="waitlist-modal">
+    <div class="modal__header">
+      <div>
+        <h2 class="modal__title" id="modal-title">Join the waitlist</h2>
+        <p class="modal__sub">Be the first to know when we launch — early members get exclusive founding perks.</p>
+      </div>
+      <button class="modal__close" id="modal-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <iframe src="https://tally.so/embed/pbR8YZ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" title="Waitlist form"></iframe>
+    </div>
+  </div>
+</div>
+
 <script>
 (function () {
   // Sticky nav shadow
@@ -1023,6 +1121,36 @@
   setTimeout(() => {
     fadeEls.forEach(el => el.classList.add('is-visible'));
   }, 800);
+
+  // Waitlist modal
+  const overlay = document.getElementById('waitlist-overlay');
+  const closeBtn = document.getElementById('modal-close');
+
+  const openModal = (e) => {
+    e.preventDefault();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  };
+
+  const closeModal = () => {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('a[href="#download"]').forEach(el => {
+    el.addEventListener('click', openModal);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
 })();
 </script>
 </body>
