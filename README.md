@@ -7,6 +7,7 @@ Marketing website for the [ThailandBiker.club](https://thailandbiker.club) mobil
 - `/` — Homepage (hero, features, screenshots, download CTA)
 - `/privacy-policy` — Privacy Policy
 - `/terms-of-use` — Terms of Use
+- `/delete-account` — Account & data deletion instructions
 - `/support` — Support & contact
 
 ## Stack
