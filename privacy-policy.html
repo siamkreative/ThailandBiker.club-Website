@@ -61,7 +61,7 @@
     <div class="page-header__meta">
       <span><b>Effective:</b>May 9, 2026</span>
       <span class="page-header__meta-dot"></span>
-      <span><b>Last updated:</b>May 9, 2026</span>
+      <span><b>Last updated:</b>September 1, 2026</span>
     </div>
   </div>
 </section>
@@ -92,18 +92,23 @@
 
       <h3>1.1 Information You Provide</h3>
       <ul>
-        <li><strong>Account information:</strong> When you register, we collect your email address and full name. If you sign in with Google or Facebook, we receive your name, email address, and profile photo from that provider.</li>
-        <li><strong>Profile information:</strong> You may optionally add a profile photo.</li>
-        <li><strong>User-submitted content:</strong> When you submit a new place (motorcycle shop, rental, repair service, etc.), we collect the name, address, contact details, photos, and geographic coordinates you provide.</li>
-        <li><strong>Location (when submitting places):</strong> We request access to your device's location solely to help you pin the exact coordinates of a place you are adding. We do not track your location in the background.</li>
+        <li><strong>Email address:</strong> Collected when you create an account, whether you sign up with an email address or use "Sign in with Google" or "Sign in with Facebook" (in which case we receive your email address from that provider). We use it for authentication and account management.</li>
+        <li><strong>Display name:</strong> Optional. If you set one, it is shown on your profile and next to content you submit.</li>
+        <li><strong>Profile photo:</strong> Optional. Stored only if you choose to upload one.</li>
+        <li><strong>Content you submit:</strong> When you submit a place or an event (motorcycle shop, rental, repair service, ride, meet, etc.), we collect the name, address, contact details, photos, geographic coordinates, and other details you provide.</li>
+        <li><strong>Location (when submitting content):</strong> If you choose to, you can use your device's location to pin the exact coordinates of a place or event you are adding. Those coordinates are then part of the public listing. We do not track your location in the background.</li>
       </ul>
 
       <h3>1.2 Information Collected Automatically</h3>
       <ul>
-        <li><strong>Usage data:</strong> We use Firebase Analytics to collect information about how you interact with the app — screens visited, searches performed, places viewed, favorites added, and similar in-app actions.</li>
-        <li><strong>Device information:</strong> Firebase Analytics may collect device type, operating system version, and a resettable advertising identifier.</li>
+        <li><strong>Account identifier:</strong> An internal user ID we assign to your account to link it to your profile and submissions.</li>
+        <li><strong>App activity:</strong> We use Firebase Analytics to collect information about how you interact with the app — screens viewed, places and events viewed, searches performed, favorites added, and shares.</li>
+        <li><strong>Device and usage data:</strong> Firebase Analytics also collects a Firebase installation/instance identifier, device model, operating system version, app version, and an approximate (city-level) location derived from your IP address.</li>
         <li><strong>Local cache:</strong> We temporarily store a list of categories on your device (expires after 7 days) to reduce load times. No personal data is stored locally beyond your cached session.</li>
       </ul>
+
+      <h3>1.3 Information We Do Not Collect</h3>
+      <p>We do <strong>not</strong> collect or transmit your precise GPS location. The "Near Me" feature reads your device location only <strong>on your device</strong>, to sort nearby places by distance. Those coordinates are never sent to our servers or to any third party.</p>
 
       <h2 id="how-we-use"><span class="legal__num">2.</span>How We Use Your Information</h2>
       <table>
@@ -122,18 +127,18 @@
       <h2 id="how-we-share"><span class="legal__num">3.</span>How We Share Your Information</h2>
 
       <h3>3.1 Public content</h3>
-      <p>User-submitted places and their associated details (name, photos, contact info, coordinates) are visible to all users of the Service. Do not submit personal information in place listings.</p>
+      <p>User-submitted places and events and their associated details (name, photos, contact info, coordinates) are visible to all users of the Service. Your display name and profile photo may be shown alongside content you submit. Do not submit personal information in listings.</p>
 
       <h3>3.2 Service providers</h3>
       <p>We share data with the following third-party processors solely to operate the Service:</p>
       <table>
         <thead><tr><th>Provider</th><th>Purpose</th><th>Privacy Policy</th></tr></thead>
         <tbody>
-          <tr><td><strong>Supabase</strong> (EU region)</td><td>Database, authentication, file storage</td><td><a href="https://supabase.com/privacy">supabase.com/privacy</a></td></tr>
-          <tr><td><strong>Google Firebase</strong></td><td>Analytics, app distribution</td><td><a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a></td></tr>
-          <tr><td><strong>Google Maps Platform</strong></td><td>Map display and location picker</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
-          <tr><td><strong>Google (Sign-in)</strong></td><td>OAuth authentication</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
-          <tr><td><strong>Meta (Facebook Sign-in)</strong></td><td>OAuth authentication</td><td><a href="https://www.facebook.com/policy">facebook.com/policy</a></td></tr>
+          <tr><td><strong>Supabase</strong></td><td>Database, authentication, file storage</td><td><a href="https://supabase.com/privacy">supabase.com/privacy</a></td></tr>
+          <tr><td><strong>Google Firebase (Analytics)</strong></td><td>Usage analytics</td><td><a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a></td></tr>
+          <tr><td><strong>Google Maps Platform</strong></td><td>Map display</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
+          <tr><td><strong>Google</strong></td><td>"Sign in with Google" authentication</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
+          <tr><td><strong>Meta / Facebook</strong></td><td>"Sign in with Facebook" authentication</td><td><a href="https://www.facebook.com/privacy/policy">facebook.com/privacy/policy</a></td></tr>
         </tbody>
       </table>
 
@@ -141,7 +146,9 @@
       <p>We may disclose your information if required to do so by law or in response to a valid request from a governmental authority.</p>
 
       <h2 id="retention"><span class="legal__num">4.</span>Data Retention</h2>
-      <p>We retain your account and profile data for as long as your account is active. You may request deletion at any time (see Section 6). Analytics data is retained according to the default Firebase Analytics retention schedule (up to 14 months). Local cache data on your device expires automatically after 7 days.</p>
+      <p>We retain your account and profile data (email address, display name, profile photo, favorites) for as long as your account is active. You may delete your account at any time — see <a href="delete-account">thailandbiker.club/delete-account</a> or Section 6.</p>
+      <p>Places and events you submitted are <strong>not</strong> deleted when you close your account. Instead they are anonymised — unlinked from your identity — and retained so that other riders can still rely on them and for moderation history.</p>
+      <p>Analytics data is retained according to the default Firebase Analytics retention schedule (up to 14 months). Local cache data on your device expires automatically after 7 days.</p>
 
       <h2 id="children"><span class="legal__num">5.</span>Children's Privacy</h2>
       <p>The Service is not directed to children under the age of 13 (or 20 in Thailand, where parental consent is required under the PDPA for minors under 20). We do not knowingly collect personal information from children. If you believe a child has provided us personal information, contact us and we will delete it promptly.</p>
@@ -151,7 +158,7 @@
       <ul>
         <li><strong>Access</strong> the personal data we hold about you</li>
         <li><strong>Correct</strong> inaccurate personal data</li>
-        <li><strong>Delete</strong> your account and associated personal data</li>
+        <li><strong>Delete</strong> your account and associated personal data — go to <a href="delete-account">thailandbiker.club/delete-account</a>, or use <b>Profile &rarr; Delete Account</b> in the app</li>
         <li><strong>Withdraw consent</strong> for analytics tracking (via your device's advertising settings or by contacting us)</li>
         <li><strong>Data portability</strong> — receive a copy of your data in a structured format</li>
       </ul>
@@ -162,7 +169,7 @@
       <p>We use industry-standard security practices including TLS encryption in transit and row-level security policies on our database. No method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
 
       <h2 id="international"><span class="legal__num">8.</span>International Data Transfers</h2>
-      <p>Your data may be processed in countries outside Thailand. Supabase stores data in the EU. Firebase processes data in the United States. We rely on these providers' data processing agreements and standard contractual clauses for such transfers.</p>
+      <p>Your data may be processed in countries outside Thailand, including by Supabase and by Google (Firebase, Maps, and sign-in), which process data in the United States and other regions. We rely on these providers' data processing agreements and standard contractual clauses for such transfers.</p>
 
       <h2 id="changes"><span class="legal__num">9.</span>Changes to This Policy</h2>
       <p>We may update this Privacy Policy from time to time. We will notify you of material changes by updating the "Last Updated" date at the top of this page and, where appropriate, by sending a notification through the app. Continued use of the Service after changes take effect constitutes your acceptance of the revised policy.</p>
@@ -200,6 +207,7 @@
       <div class="footer__links">
         <a href="privacy-policy.html">Privacy Policy</a>
         <a href="terms-of-use.html">Terms of Use</a>
+        <a href="delete-account">Delete Account</a>
         <a href="support.html">Support</a>
       </div>
     </div>
