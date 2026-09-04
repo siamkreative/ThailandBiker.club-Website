@@ -6,6 +6,11 @@
 
 ThailandBiker.club is a mobile app and companion website that helps motorcycle riders navigate the Thai riding scene. All listings are rider-reviewed before going live.
 
+## Download
+
+- Android: [Google Play](https://play.google.com/store/apps/details?id=com.thailandbikerclub.app)
+- iOS: coming soon (join the waitlist from the homepage)
+
 ## Pages
 
 - [Home](https://thailandbiker.club/): App overview, features, screenshots, and download links
