@@ -1,3 +1,5 @@
 .DS_Store
 .image-slots.state.json
 images/browse-*.jpg
+.wrangler/
+.conductor/settings.local.toml

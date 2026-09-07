@@ -25,6 +25,8 @@ npx http-server -o        # quick static preview at http://localhost:8080
 npx wrangler dev          # preview with the Cloudflare Workers runtime
 ```
 
+In [Conductor](https://conductor.build) workspaces, the Run button starts the same `wrangler dev` preview on the workspace's assigned port (`.conductor/settings.toml`).
+
 ## App Screenshots
 
 Phone screenshots live in `images/` as matched pairs: `screen-*.jpg` (fallback) and `screen-*.webp` (served first via `<picture>`). Current set: `home`, `places`, `trips`, `events`, `guides`.
