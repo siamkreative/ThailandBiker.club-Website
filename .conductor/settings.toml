@@ -1,0 +1,16 @@
+"$schema" = "https://conductor.build/schemas/settings.repo.schema.json"
+
+[scripts]
+run_mode = "concurrent"
+
+# Preview the site with the real Cloudflare Workers runtime, so clean URLs,
+# `_headers`, and the 404 page behave the same as in production.
+#
+# --persist-to keeps miniflare's local state out of the workspace: the site is
+# served from the repo root, so state written under ./.wrangler would retrigger
+# wrangler's asset watcher in an endless reload loop.
+[scripts.run.dev]
+command = 'npx -y wrangler dev --ip 127.0.0.1 --port $CONDUCTOR_PORT --inspector-port $((CONDUCTOR_PORT + 1)) --persist-to "${TMPDIR:-/tmp}/wrangler-$CONDUCTOR_WORKSPACE_NAME"'
+available_in = [ "local" ]
+default = true
+icon = "play"
