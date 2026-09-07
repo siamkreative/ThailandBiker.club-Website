@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<script>document.documentElement.classList.add('js');</script>
 <meta name="theme-color" content="#FF6B35">
 <title>ThailandBiker.club — Your ultimate riding companion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -630,7 +631,7 @@
   }
 
   /* ======== ANIMATIONS ======== */
-  .fade-up {
+  .js .fade-up {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.8,.2,1);
@@ -645,7 +646,7 @@
   .fade-up[data-delay="4"] { transition-delay: 320ms; }
 
   @media (prefers-reduced-motion: reduce) {
-    .fade-up { opacity: 1; transform: none; transition: none; }
+    .js .fade-up { opacity: 1; transform: none; transition: none; }
   }
 
   /* ======== RESPONSIVE ======== */
@@ -1119,11 +1120,6 @@
   } else {
     fadeEls.forEach(el => el.classList.add('is-visible'));
   }
-
-  // Safety net: anything still hidden after 800ms gets revealed unconditionally
-  setTimeout(() => {
-    fadeEls.forEach(el => el.classList.add('is-visible'));
-  }, 800);
 
   // Waitlist modal
   const overlay = document.getElementById('waitlist-overlay');
