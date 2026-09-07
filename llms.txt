@@ -14,9 +14,9 @@ ThailandBiker.club is a mobile app and companion website that helps motorcycle r
 ## Pages
 
 - [Home](https://thailandbiker.club/): App overview, features, screenshots, and download links
-- [Support](https://thailandbiker.club/support.html): Contact form and help resources
-- [Privacy Policy](https://thailandbiker.club/privacy-policy.html): Data collection and PDPA compliance
-- [Terms of Use](https://thailandbiker.club/terms-of-use.html): App and website usage conditions
+- [Support](https://thailandbiker.club/support): Contact form and help resources
+- [Privacy Policy](https://thailandbiker.club/privacy-policy): Data collection and PDPA compliance
+- [Terms of Use](https://thailandbiker.club/terms-of-use): App and website usage conditions
 - [Delete Account](https://thailandbiker.club/delete-account): How to permanently delete your account and personal data
 
 ## App Features
@@ -32,4 +32,4 @@ Expatriate and foreign motorcycle riders living in or visiting Thailand. Also re
 
 ## Contact
 
-Support: [https://thailandbiker.club/support.html](https://thailandbiker.club/support.html)
+Support: [https://thailandbiker.club/support](https://thailandbiker.club/support)
