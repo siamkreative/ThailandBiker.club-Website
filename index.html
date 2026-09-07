@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://thailandbiker.club/images/og-cover.jpg">
 
 <!-- Preload LCP hero image -->
-<link rel="preload" as="image" href="images/screen-home.webp" type="image/webp">
+<link rel="preload" as="image" href="images/screen-favorites.webp" type="image/webp">
 
 <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="32x32 16x16" type="image/x-icon">
@@ -340,7 +340,7 @@
     height: 100%;
     border-radius: 32px;
     overflow: hidden;
-    background: #f0f0f0;
+    background: #fff;
     position: relative;
   }
   .phone--sm { width: 220px; border-radius: 34px; padding: 7px; }
@@ -446,33 +446,35 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 24px;
-    align-items: end;
-    padding: 8px 0 32px;
+    align-items: start;
+    padding: 40px 0 64px;
   }
-  .screens__grid .phone:nth-child(1) { transform: translateY(0); }
-  .screens__grid .phone:nth-child(2) { transform: translateY(40px); }
-  .screens__grid .phone:nth-child(3) { transform: translateY(-20px); }
-  .screens__grid .phone:nth-child(4) { transform: translateY(50px); }
-  .screens__grid .phone:nth-child(5) { transform: translateY(10px); }
-  .screens__grid .phone {
+  .screens__grid .screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     max-width: 240px;
     margin: 0 auto;
     transition: transform 400ms cubic-bezier(.2,.8,.2,1);
   }
-  .screens__grid .phone:hover {
-    transform: translateY(-8px) !important;
+  .screens__grid .screen:nth-child(1) { transform: translateY(0); }
+  .screens__grid .screen:nth-child(2) { transform: translateY(40px); }
+  .screens__grid .screen:nth-child(3) { transform: translateY(-20px); }
+  .screens__grid .screen:nth-child(4) { transform: translateY(50px); }
+  .screens__grid .screen:nth-child(5) { transform: translateY(10px); }
+  .screens__grid .phone {
+    width: 100%;
+    transition: transform 400ms cubic-bezier(.2,.8,.2,1);
   }
-  .screens__caption-row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 24px;
-    margin-top: 36px;
+  .screens__grid .screen:hover .phone {
+    transform: translateY(-8px);
   }
   .screen-caption {
     text-align: center;
     font-size: 13px;
     color: var(--text-muted);
+    margin-top: 24px;
   }
   .screen-caption b {
     color: var(--dark);
@@ -650,9 +652,11 @@
     .cta-banner__inner { grid-template-columns: 1fr; gap: 32px; }
     .footer__top { grid-template-columns: 1fr; gap: 24px; }
     .footer__links { justify-content: flex-start; }
-    .screens__grid { grid-template-columns: repeat(5, minmax(180px, 1fr)); overflow-x: auto; padding: 8px var(--pad-x) 32px; margin: 0 calc(var(--pad-x) * -1); scroll-snap-type: x mandatory; }
-    .screens__grid .phone { scroll-snap-align: center; min-width: 200px; }
-    .screens__caption-row { display: none; }
+    .screens__grid { grid-template-columns: repeat(5, minmax(180px, 1fr)); overflow-x: auto; padding: 8px var(--pad-x) 32px; margin: 0 calc(var(--pad-x) * -1); scroll-snap-type: x mandatory; align-items: start; }
+    /* :nth-child(n) matches all yet still outweighs the per-index stagger rules above */
+    .screens__grid .screen:nth-child(n) { scroll-snap-align: center; min-width: 200px; transform: none; }
+    .screens__grid .screen:hover .phone { transform: none; }
+    .screen-caption { margin-top: 20px; }
   }
   @media (max-width: 640px) {
     .nav__links { display: none; }
@@ -805,7 +809,7 @@
         <div class="phone__screen">
           <picture>
             <source srcset="images/screen-places.webp" type="image/webp">
-            <img src="images/screen-places.jpg" alt="Places screen" width="249" height="540" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
           </picture>
         </div>
       </div>
@@ -813,8 +817,8 @@
         <div class="phone__notch"></div>
         <div class="phone__screen">
           <picture>
-            <source srcset="images/screen-home.webp" type="image/webp">
-            <img src="images/screen-home.jpg" alt="ThailandBiker app home screen" width="249" height="540" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;">
+            <source srcset="images/screen-favorites.webp" type="image/webp">
+            <img src="images/screen-favorites.jpg" alt="ThailandBiker app favorites screen" width="262" height="540" fetchpriority="high" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
           </picture>
         </div>
       </div>
@@ -823,7 +827,7 @@
         <div class="phone__screen">
           <picture>
             <source srcset="images/screen-trips.webp" type="image/webp">
-            <img src="images/screen-trips.jpg" alt="Trips screen" width="249" height="540" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <img src="images/screen-trips.jpg" alt="Trips screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
           </picture>
         </div>
       </div>
@@ -905,59 +909,66 @@
     </div>
 
     <div class="screens__grid">
-      <div class="phone fade-up" data-delay="1">
-        <div class="phone__notch"></div>
-        <div class="phone__screen">
-          <picture>
-            <source srcset="images/screen-home.webp" type="image/webp">
-            <img src="images/screen-home.jpg" alt="Home screen" width="249" height="540" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </picture>
+      <figure class="screen fade-up" data-delay="1">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <picture>
+              <source srcset="images/screen-places.webp" type="image/webp">
+              <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            </picture>
+          </div>
         </div>
-      </div>
-      <div class="phone fade-up" data-delay="2">
-        <div class="phone__notch"></div>
-        <div class="phone__screen">
-          <picture>
-            <source srcset="images/screen-places.webp" type="image/webp">
-            <img src="images/screen-places.jpg" alt="Places screen" width="249" height="540" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </picture>
+        <figcaption class="screen-caption"><b>Places</b>Browse and filter</figcaption>
+      </figure>
+      <figure class="screen fade-up" data-delay="2">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <picture>
+              <source srcset="images/screen-trips.webp" type="image/webp">
+              <img src="images/screen-trips.jpg" alt="Trips screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            </picture>
+          </div>
         </div>
-      </div>
-      <div class="phone fade-up" data-delay="3">
-        <div class="phone__notch"></div>
-        <div class="phone__screen">
-          <picture>
-            <source srcset="images/screen-trips.webp" type="image/webp">
-            <img src="images/screen-trips.jpg" alt="Trips screen" width="249" height="540" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </picture>
+        <figcaption class="screen-caption"><b>Trips</b>Reviews &amp; multi-day loops</figcaption>
+      </figure>
+      <figure class="screen fade-up" data-delay="3">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <picture>
+              <source srcset="images/screen-events.webp" type="image/webp">
+              <img src="images/screen-events.jpg" alt="Events screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            </picture>
+          </div>
         </div>
-      </div>
-      <div class="phone fade-up" data-delay="4">
-        <div class="phone__notch"></div>
-        <div class="phone__screen">
-          <picture>
-            <source srcset="images/screen-events.webp" type="image/webp">
-            <img src="images/screen-events.jpg" alt="Events screen" width="249" height="540" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </picture>
+        <figcaption class="screen-caption"><b>Events</b>What's on this month</figcaption>
+      </figure>
+      <figure class="screen fade-up" data-delay="4">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <picture>
+              <source srcset="images/screen-guides.webp" type="image/webp">
+              <img src="images/screen-guides.jpg" alt="Guides screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            </picture>
+          </div>
         </div>
-      </div>
-      <div class="phone fade-up" data-delay="4">
-        <div class="phone__notch"></div>
-        <div class="phone__screen">
-          <picture>
-            <source srcset="images/screen-guides.webp" type="image/webp">
-            <img src="images/screen-guides.jpg" alt="Guides screen" width="249" height="540" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          </picture>
+        <figcaption class="screen-caption"><b>Guides</b>Practical reading</figcaption>
+      </figure>
+      <figure class="screen fade-up" data-delay="5">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <picture>
+              <source srcset="images/screen-favorites.webp" type="image/webp">
+              <img src="images/screen-favorites.jpg" alt="Favorites screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            </picture>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="screens__caption-row fade-up">
-      <div class="screen-caption"><b>Home</b>Your saved + nearby</div>
-      <div class="screen-caption"><b>Places</b>Browse and filter</div>
-      <div class="screen-caption"><b>Trips</b>Route detail + map</div>
-      <div class="screen-caption"><b>Events</b>What's on this month</div>
-      <div class="screen-caption"><b>Guides</b>Practical reading</div>
+        <figcaption class="screen-caption"><b>Favorites</b>Save places &amp; routes</figcaption>
+      </figure>
     </div>
   </div>
 </section>

@@ -29,14 +29,14 @@ In [Conductor](https://conductor.build) workspaces, the Run button starts the sa
 
 ## App Screenshots
 
-Phone screenshots live in `images/` as matched pairs: `screen-*.jpg` (fallback) and `screen-*.webp` (served first via `<picture>`). Current set: `home`, `places`, `trips`, `events`, `guides`.
+Phone screenshots live in `images/` as matched pairs: `screen-*.jpg` (fallback) and `screen-*.webp` (served first via `<picture>`). Current set: `places`, `trips`, `events`, `guides`, `favorites`.
 
-To refresh one, drop a full-resolution portrait screenshot in and regenerate both files:
+To refresh one, drop a full-resolution portrait screenshot in and regenerate both files (needs `cwebp` — `brew install webp`):
 
 ```bash
-name=screen-home   # one of: screen-{home,places,trips,events,guides}
-sips -Z 540 -s formatOptions 82 your-screenshot.jpg --out images/$name.jpg
-sips -s format webp -s formatOptions 80 images/$name.jpg --out images/$name.webp
+name=screen-places   # one of: screen-{places,trips,events,guides,favorites}
+sips -s format jpeg -s formatOptions 72 -Z 540 your-screenshot.png --out images/$name.jpg
+cwebp -q 80 images/$name.jpg -o images/$name.webp
 ```
 
 `images/og-cover.jpg` is the social share image (1200×630).
