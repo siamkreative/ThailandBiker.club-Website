@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://thailandbiker.club/images/og-cover.jpg">
 
 <!-- Preload LCP hero image -->
-<link rel="preload" as="image" href="images/screen-favorites.webp" type="image/webp">
+<link rel="preload" as="image" href="images/screen-trips.webp" type="image/webp">
 
 <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="32x32 16x16" type="image/x-icon">
@@ -470,6 +470,37 @@
   .screens__grid .screen:hover .phone {
     transform: translateY(-8px);
   }
+  .screen__btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+    position: relative;
+    border-radius: 40px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .screen__btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(12,12,12,0) center / 40px 40px no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.6-3.6M11 8v6M8 11h6'/%3E%3C/svg%3E");
+    opacity: 0;
+    transition: opacity 200ms ease, background-color 200ms ease;
+    pointer-events: none;
+  }
+  .screen__btn:hover::after,
+  .screen__btn:focus-visible::after {
+    opacity: 1;
+    background-color: rgba(12,12,12,0.22);
+  }
+  .screen__btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+  }
   .screen-caption {
     text-align: center;
     font-size: 13px;
@@ -744,6 +775,48 @@
     .modal__header { padding: 22px 20px 0; }
     .modal__body { padding: 16px 20px 20px; }
   }
+
+  /* ======== SCREENSHOT LIGHTBOX ======== */
+  .lightbox {
+    background: rgba(10,10,10,0.82);
+    flex-direction: column;
+    gap: 18px;
+  }
+  .lightbox__figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-height: 100%;
+    animation: modal-in 220ms cubic-bezier(.2,.8,.2,1);
+  }
+  .lightbox__figure img {
+    display: block;
+    width: auto;
+    max-width: min(340px, 82vw);
+    max-height: 82vh;
+    border-radius: 28px;
+    background: #fff;
+    box-shadow: var(--shadow-lg);
+  }
+  .lightbox__cap {
+    color: rgba(255,255,255,0.86);
+    font-size: 13.5px;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+  .lightbox__close {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    border-color: rgba(255,255,255,0.28);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+  }
+  .lightbox__close:hover { background: rgba(0,0,0,0.55); color: #fff; }
 </style>
 </head>
 <body>
@@ -808,8 +881,8 @@
         <div class="phone__notch"></div>
         <div class="phone__screen">
           <picture>
-            <source srcset="images/screen-places.webp" type="image/webp">
-            <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            <source srcset="images/screen-favorites.webp" type="image/webp">
+            <img src="images/screen-favorites.jpg" alt="Favorites screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
           </picture>
         </div>
       </div>
@@ -817,8 +890,8 @@
         <div class="phone__notch"></div>
         <div class="phone__screen">
           <picture>
-            <source srcset="images/screen-favorites.webp" type="image/webp">
-            <img src="images/screen-favorites.jpg" alt="ThailandBiker app favorites screen" width="262" height="540" fetchpriority="high" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            <source srcset="images/screen-trips.webp" type="image/webp">
+            <img src="images/screen-trips.jpg" alt="ThailandBiker app trips screen" width="262" height="540" fetchpriority="high" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
           </picture>
         </div>
       </div>
@@ -826,8 +899,8 @@
         <div class="phone__notch"></div>
         <div class="phone__screen">
           <picture>
-            <source srcset="images/screen-trips.webp" type="image/webp">
-            <img src="images/screen-trips.jpg" alt="Trips screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            <source srcset="images/screen-places.webp" type="image/webp">
+            <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
           </picture>
         </div>
       </div>
@@ -910,63 +983,73 @@
 
     <div class="screens__grid">
       <figure class="screen fade-up" data-delay="1">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <div class="phone__screen">
-            <picture>
-              <source srcset="images/screen-places.webp" type="image/webp">
-              <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
-            </picture>
+        <button type="button" class="screen__btn" data-lightbox="images/screen-places-lg.webp" data-lightbox-alt="ThailandBiker.club Places screen enlarged" data-lightbox-cap="Places — browse and filter">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <picture>
+                <source srcset="images/screen-places.webp" type="image/webp">
+                <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+              </picture>
+            </div>
           </div>
-        </div>
+        </button>
         <figcaption class="screen-caption"><b>Places</b>Browse and filter</figcaption>
       </figure>
       <figure class="screen fade-up" data-delay="2">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <div class="phone__screen">
-            <picture>
-              <source srcset="images/screen-trips.webp" type="image/webp">
-              <img src="images/screen-trips.jpg" alt="Trips screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
-            </picture>
+        <button type="button" class="screen__btn" data-lightbox="images/screen-trips-lg.webp" data-lightbox-alt="ThailandBiker.club Trips screen enlarged" data-lightbox-cap="Trips — reviews &amp; multi-day loops">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <picture>
+                <source srcset="images/screen-trips.webp" type="image/webp">
+                <img src="images/screen-trips.jpg" alt="Trips screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+              </picture>
+            </div>
           </div>
-        </div>
+        </button>
         <figcaption class="screen-caption"><b>Trips</b>Reviews &amp; multi-day loops</figcaption>
       </figure>
       <figure class="screen fade-up" data-delay="3">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <div class="phone__screen">
-            <picture>
-              <source srcset="images/screen-events.webp" type="image/webp">
-              <img src="images/screen-events.jpg" alt="Events screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
-            </picture>
+        <button type="button" class="screen__btn" data-lightbox="images/screen-events-lg.webp" data-lightbox-alt="ThailandBiker.club Events screen enlarged" data-lightbox-cap="Events — what's on this month">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <picture>
+                <source srcset="images/screen-events.webp" type="image/webp">
+                <img src="images/screen-events.jpg" alt="Events screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+              </picture>
+            </div>
           </div>
-        </div>
+        </button>
         <figcaption class="screen-caption"><b>Events</b>What's on this month</figcaption>
       </figure>
       <figure class="screen fade-up" data-delay="4">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <div class="phone__screen">
-            <picture>
-              <source srcset="images/screen-guides.webp" type="image/webp">
-              <img src="images/screen-guides.jpg" alt="Guides screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
-            </picture>
+        <button type="button" class="screen__btn" data-lightbox="images/screen-guides-lg.webp" data-lightbox-alt="ThailandBiker.club Guides screen enlarged" data-lightbox-cap="Guides — practical reading">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <picture>
+                <source srcset="images/screen-guides.webp" type="image/webp">
+                <img src="images/screen-guides.jpg" alt="Guides screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+              </picture>
+            </div>
           </div>
-        </div>
+        </button>
         <figcaption class="screen-caption"><b>Guides</b>Practical reading</figcaption>
       </figure>
       <figure class="screen fade-up" data-delay="5">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <div class="phone__screen">
-            <picture>
-              <source srcset="images/screen-favorites.webp" type="image/webp">
-              <img src="images/screen-favorites.jpg" alt="Favorites screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
-            </picture>
+        <button type="button" class="screen__btn" data-lightbox="images/screen-favorites-lg.webp" data-lightbox-alt="ThailandBiker.club Favorites screen enlarged" data-lightbox-cap="Favorites — save places &amp; routes">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <picture>
+                <source srcset="images/screen-favorites.webp" type="image/webp">
+                <img src="images/screen-favorites.jpg" alt="Favorites screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+              </picture>
+            </div>
           </div>
-        </div>
+        </button>
         <figcaption class="screen-caption"><b>Favorites</b>Save places &amp; routes</figcaption>
       </figure>
     </div>
@@ -1085,6 +1168,19 @@
   </div>
 </div>
 
+<!-- ============== SCREENSHOT LIGHTBOX ============== -->
+<div class="modal-overlay lightbox" id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="App screenshot preview">
+  <button class="modal__close lightbox__close" id="lightbox-close" aria-label="Close preview">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </svg>
+  </button>
+  <figure class="lightbox__figure">
+    <img id="lightbox-img" src="" alt="" width="600" height="1233">
+    <figcaption class="lightbox__cap" id="lightbox-cap"></figcaption>
+  </figure>
+</div>
+
 <script>
 (function () {
   // Sticky nav shadow
@@ -1124,34 +1220,51 @@
     fadeEls.forEach(el => el.classList.add('is-visible'));
   }
 
-  // Waitlist modal
-  const overlay = document.getElementById('waitlist-overlay');
-  const closeBtn = document.getElementById('modal-close');
+  // Modals (waitlist + screenshot lightbox)
+  let lastFocused = null;
 
-  const openModal = (e) => {
-    e.preventDefault();
+  const openOverlay = (overlay) => {
+    lastFocused = document.activeElement;
     overlay.classList.add('is-open');
     document.body.style.overflow = 'hidden';
-    closeBtn.focus();
+    (overlay.querySelector('.modal__close') || overlay).focus();
   };
 
-  const closeModal = () => {
+  const closeOverlay = (overlay) => {
     overlay.classList.remove('is-open');
     document.body.style.overflow = '';
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
   };
 
-  document.querySelectorAll('[data-waitlist]').forEach(el => {
-    el.addEventListener('click', openModal);
-  });
-
-  closeBtn.addEventListener('click', closeModal);
-
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeOverlay(overlay); });
+    overlay.querySelectorAll('.modal__close').forEach(btn => {
+      btn.addEventListener('click', () => closeOverlay(overlay));
+    });
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.modal-overlay.is-open').forEach(closeOverlay);
+  });
+
+  // Waitlist
+  const waitlistOverlay = document.getElementById('waitlist-overlay');
+  document.querySelectorAll('[data-waitlist]').forEach(el => {
+    el.addEventListener('click', (e) => { e.preventDefault(); openOverlay(waitlistOverlay); });
+  });
+
+  // Screenshot lightbox
+  const lightboxOverlay = document.getElementById('lightbox-overlay');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCap = document.getElementById('lightbox-cap');
+  document.querySelectorAll('[data-lightbox]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      lightboxImg.src = btn.dataset.lightbox;
+      lightboxImg.alt = btn.dataset.lightboxAlt || '';
+      lightboxCap.textContent = btn.dataset.lightboxCap || '';
+      openOverlay(lightboxOverlay);
+    });
   });
 })();
 </script>
