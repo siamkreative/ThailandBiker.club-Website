@@ -799,7 +799,11 @@
   }
   .lightbox__figure img {
     display: block;
+    /* width/height:auto lets the browser keep the intrinsic aspect ratio;
+       without the explicit height:auto the width/height HTML attributes win
+       and the image gets vertically stretched to max-height. */
     width: auto;
+    height: auto;
     max-width: min(340px, 82vw);
     max-height: 82vh;
     border-radius: 28px;
