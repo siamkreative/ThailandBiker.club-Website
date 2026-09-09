@@ -316,7 +316,6 @@
   .phone {
     position: relative;
     width: 270px;
-    aspect-ratio: 9 / 19.5;
     background: #0c0c0c;
     border-radius: 40px;
     padding: 9px;
@@ -337,11 +336,19 @@
   }
   .phone__screen {
     width: 100%;
-    height: 100%;
+    /* Match the real screenshot aspect ratio (262x540) so images are
+       never letterboxed or vertically stretched inside the frame. */
+    aspect-ratio: 262 / 540;
     border-radius: 32px;
     overflow: hidden;
     background: #fff;
     position: relative;
+  }
+  .phone__screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
   }
   .phone--sm { width: 220px; border-radius: 34px; padding: 7px; }
   .phone--sm .phone__screen { border-radius: 27px; }
@@ -792,7 +799,11 @@
   }
   .lightbox__figure img {
     display: block;
+    /* width/height:auto lets the browser keep the intrinsic aspect ratio;
+       without the explicit height:auto the width/height HTML attributes win
+       and the image gets vertically stretched to max-height. */
     width: auto;
+    height: auto;
     max-width: min(340px, 82vw);
     max-height: 82vh;
     border-radius: 28px;
@@ -881,7 +892,7 @@
         <div class="phone__screen">
           <picture>
             <source srcset="images/screen-favorites.webp" type="image/webp">
-            <img src="images/screen-favorites.jpg" alt="Favorites screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            <img src="images/screen-favorites.jpg" alt="Favorites screen" width="262" height="540" loading="lazy">
           </picture>
         </div>
       </div>
@@ -890,7 +901,7 @@
         <div class="phone__screen">
           <picture>
             <source srcset="images/screen-trips.webp" type="image/webp">
-            <img src="images/screen-trips.jpg" alt="ThailandBiker app trips screen" width="262" height="540" fetchpriority="high" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            <img src="images/screen-trips.jpg" alt="ThailandBiker app trips screen" width="262" height="540" fetchpriority="high">
           </picture>
         </div>
       </div>
@@ -899,7 +910,7 @@
         <div class="phone__screen">
           <picture>
             <source srcset="images/screen-places.webp" type="image/webp">
-            <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+            <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy">
           </picture>
         </div>
       </div>
@@ -988,7 +999,7 @@
             <div class="phone__screen">
               <picture>
                 <source srcset="images/screen-places.webp" type="image/webp">
-                <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+                <img src="images/screen-places.jpg" alt="Places screen" width="262" height="540" loading="lazy">
               </picture>
             </div>
           </div>
@@ -1002,7 +1013,7 @@
             <div class="phone__screen">
               <picture>
                 <source srcset="images/screen-trips.webp" type="image/webp">
-                <img src="images/screen-trips.jpg" alt="Trips screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+                <img src="images/screen-trips.jpg" alt="Trips screen" width="262" height="540" loading="lazy">
               </picture>
             </div>
           </div>
@@ -1016,7 +1027,7 @@
             <div class="phone__screen">
               <picture>
                 <source srcset="images/screen-events.webp" type="image/webp">
-                <img src="images/screen-events.jpg" alt="Events screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+                <img src="images/screen-events.jpg" alt="Events screen" width="262" height="540" loading="lazy">
               </picture>
             </div>
           </div>
@@ -1030,7 +1041,7 @@
             <div class="phone__screen">
               <picture>
                 <source srcset="images/screen-guides.webp" type="image/webp">
-                <img src="images/screen-guides.jpg" alt="Guides screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+                <img src="images/screen-guides.jpg" alt="Guides screen" width="262" height="540" loading="lazy">
               </picture>
             </div>
           </div>
@@ -1044,7 +1055,7 @@
             <div class="phone__screen">
               <picture>
                 <source srcset="images/screen-favorites.webp" type="image/webp">
-                <img src="images/screen-favorites.jpg" alt="Favorites screen" width="262" height="540" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;">
+                <img src="images/screen-favorites.jpg" alt="Favorites screen" width="262" height="540" loading="lazy">
               </picture>
             </div>
           </div>
