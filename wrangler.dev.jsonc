@@ -1,0 +1,20 @@
+// Local development only — `wrangler dev --config wrangler.dev.jsonc`.
+//
+// Same static assets as production, fronted by a tiny Worker that strips the
+// long-lived `Cache-Control` headers from `_headers` so CSS/JS edits show up on
+// a normal reload. Production deploys use `wrangler.jsonc`, which this file
+// intentionally mirrors — keep the shared asset options in sync between the two.
+{
+  "name": "thailandbiker-club-dev",
+  "compatibility_date": "2026-05-09",
+  "main": "./dev/no-cache-worker.js",
+  "assets": {
+    "directory": "./",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    // Route every request through the Worker (assets would otherwise be served
+    // directly, bypassing it) and hand it the asset server as a binding.
+    "binding": "ASSETS",
+    "run_worker_first": true
+  }
+}
