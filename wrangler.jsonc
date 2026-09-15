@@ -1,3 +1,5 @@
+// Production config. Local development uses `wrangler.dev.jsonc`, which mirrors
+// the asset options below — update both together.
 {
   "name": "thailandbiker-club",
   "compatibility_date": "2026-05-09",

@@ -1,0 +1,13 @@
+# Repo plumbing that should never be served as a public asset.
+# https://developers.cloudflare.com/workers/static-assets/binding/#ignoring-assets
+.claude
+.conductor
+.context
+.gitignore
+.image-slots.state.json
+.wrangler
+CLAUDE.md
+README.md
+dev
+wrangler.jsonc
+wrangler.dev.jsonc

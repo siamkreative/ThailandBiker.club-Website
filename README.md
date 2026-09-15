@@ -21,11 +21,24 @@ Deployed on Cloudflare Workers static assets (`wrangler.jsonc`). Clean URLs (`/s
 ## Development
 
 ```bash
-npx http-server -o        # quick static preview at http://localhost:8080
-npx wrangler dev          # preview with the Cloudflare Workers runtime
+npx http-server -o                                  # quick static preview at http://localhost:8080
+npx wrangler dev --config wrangler.dev.jsonc        # preview with the Cloudflare Workers runtime
 ```
 
-In [Conductor](https://conductor.build) workspaces, the Run button starts the same `wrangler dev` preview on the workspace's assigned port (`.conductor/settings.toml`).
+`wrangler.dev.jsonc` serves the same assets as production but fronts them with a
+dev-only Worker (`dev/no-cache-worker.js`) that replaces the `immutable` cache
+headers from `_headers` with `no-store`. Without it, `/assets/*` and `/images/*`
+are cached for a year and CSS/JS edits only appear after a manual cache clear.
+Add `--live-reload` to have open pages reload themselves on every save.
+
+Deploys are unaffected: `wrangler deploy` uses `wrangler.jsonc`, which has no
+Worker at all. Keep the shared asset options in the two configs in sync.
+
+`.assetsignore` keeps repo plumbing (`README.md`, `dev/`, the wrangler configs,
+`.conductor/`, dotfiles) out of the published asset bundle.
+
+In [Conductor](https://conductor.build) workspaces, the Run button starts the same
+preview on the workspace's assigned port (`.conductor/settings.toml`).
 
 ## App Screenshots
 
