@@ -4,11 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <script>document.documentElement.classList.add('js');</script>
-<meta name="theme-color" content="#FF6B35">
+<meta name="theme-color" content="#1A1A1A">
 <title>ThailandBiker.club — Your ultimate riding companion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <meta name="description" content="ThailandBiker.club — the ultimate riding companion for motorcycle enthusiasts in Thailand. Discover curated routes, events, places, and guides built for the expat biker community.">
 <link rel="canonical" href="https://thailandbiker.club/">
@@ -84,10 +84,13 @@
     --accent: #FF6B35;
     --accent-deep: #E55520;
     --accent-soft: #FFF3EC;
-    --text: #1A1A2A;
+    --text: #1A1A1A;
     --text-muted: #757575;
     --hairline: #E6E6E6;
     --hairline-strong: #D9D9D9;
+
+    /* Same pairing as the app: Sora for headings and the wordmark, Inter for body. */
+    --font-heading: 'Sora', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
     --r-card: 12px;
     --r-button: 8px;
@@ -114,6 +117,7 @@
   img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
   button { font-family: inherit; cursor: pointer; }
+  h1, h2, h3, .logo__name { font-family: var(--font-heading); }
 
   .container {
     max-width: var(--maxw);

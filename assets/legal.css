@@ -8,11 +8,14 @@
   --accent: #FF6B35;
   --accent-deep: #E55520;
   --accent-soft: #FFF3EC;
-  --text: #1A1A2A;
+  --text: #1A1A1A;
   --text-muted: #757575;
   --text-soft: #4a4a55;
   --hairline: #E6E6E6;
   --hairline-strong: #D9D9D9;
+
+  /* Same pairing as the app: Sora for headings and the wordmark, Inter for body. */
+  --font-heading: 'Sora', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --r-card: 12px;
   --r-button: 8px;
@@ -38,6 +41,7 @@ body {
 a { color: var(--accent-deep); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button { font-family: inherit; cursor: pointer; }
+h1, h2, h3, .logo__name { font-family: var(--font-heading); }
 
 .container {
   max-width: var(--maxw);
