@@ -40,6 +40,16 @@ Worker at all. Keep the shared asset options in the two configs in sync.
 In [Conductor](https://conductor.build) workspaces, the Run button starts the same
 preview on the workspace's assigned port (`.conductor/settings.toml`).
 
+## Branding
+
+The site shares its brand tokens with the app (`lib/config/app_theme.dart` and
+`docs/features/BRANDING.md` in the app repo). Change them in both places or not at all:
+
+- **Type**: Sora for headings and the wordmark, Inter for everything else (`--font-heading` in `index.html` and `assets/legal.css`).
+- **Colour**: `--dark` `#1A1A1A` (nav, footer, browser `theme-color`), `--accent` `#FF6B35`, `--bg` `#F5F5F5`.
+- **Wordmark**: `ThailandBiker` at weight 800 followed by a muted, weight-500 `.club`.
+- **Logo**: `logo.png` is the app's `assets/icon/logo-transparent.png` downscaled to 160 px (`sips -Z 160`).
+
 ## App Screenshots
 
 Phone screenshots live in `images/` as matched pairs: `screen-*.jpg` (fallback) and `screen-*.webp` (served first via `<picture>`). Current set: `places`, `trips`, `events`, `guides`, `favorites`.
