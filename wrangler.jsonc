@@ -1,7 +1,7 @@
 // Production config. Local development uses `wrangler.dev.jsonc`, which mirrors
 // the asset options below — update both together.
 {
-  "name": "thailandbiker-club",
+  "name": "thailandbikerclub-website",
   "compatibility_date": "2026-05-09",
   // Only renders share-link previews (`/places/<uuid>` etc.); see worker/index.js.
   // Needs the `SUPABASE_ANON_KEY` secret (`npx wrangler secret put SUPABASE_ANON_KEY`).

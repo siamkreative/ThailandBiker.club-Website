@@ -60,14 +60,21 @@ the two in sync.
 
 The Worker reads the Supabase anon key from the `SUPABASE_ANON_KEY` secret. The
 key is public by design (the app ships it), but it stays out of the repo and the
-HTML. Set it once per Cloudflare account (it's in the app repo at
+HTML. Set it once on the `thailandbikerclub-website` Worker, either in the
+Cloudflare dashboard (Worker → Settings → Variables and Secrets → Add, type
+Secret) or with Wrangler (it's in the app repo at
 `lib/config/supabase_config.dart`):
 
 ```bash
 npx wrangler secret put SUPABASE_ANON_KEY
 ```
 
-Without it, every share link returns the 404 page.
+Secrets survive deploys, so this is a one-off. Without it, every share link
+returns the 404 page.
+
+Production deploys run through Cloudflare Workers Builds on every push to
+`main`. The Worker `name` in `wrangler.jsonc` must stay `thailandbikerclub-website`
+so Wrangler commands target the same Worker.
 
 For local development, put it in `.dev.vars` (gitignored and kept out of the
 asset upload by `.assetsignore`):
@@ -75,6 +82,10 @@ asset upload by `.assetsignore`):
 ```bash
 echo "SUPABASE_ANON_KEY=<anon key>" > .dev.vars
 ```
+
+Or export it from the environment (e.g. Conductor's environment variables);
+Wrangler only passes process env to the Worker with
+`CLOUDFLARE_INCLUDE_PROCESS_ENV=true`.
 
 ## Development
 
