@@ -5,8 +5,7 @@
       "namespace": "android_app",
       "package_name": "com.thailandbikerclub.app",
       "sha256_cert_fingerprints": [
-        "TODO:PLAY_APP_SIGNING_KEY_SHA256",
-        "TODO:UPLOAD_KEY_SHA256"
+        "AC:82:F5:F7:61:44:4D:67:CE:04:04:58:19:6A:FD:FE:11:05:A5:1A:AC:B6:BB:2E:A9:CD:E6:19:80:83:0D:12"
       ]
     }
   }
