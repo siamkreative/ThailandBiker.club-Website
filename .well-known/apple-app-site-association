@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["PD47FLA8L8.com.thailandbikerclub.app"],
+        "components": [
+          { "/": "/places/*", "comment": "Shared place" },
+          { "/": "/trips/*", "comment": "Shared trip" },
+          { "/": "/events/*", "comment": "Shared event" },
+          { "/": "/guides/*", "comment": "Shared guide" }
+        ]
+      }
+    ]
+  }
+}

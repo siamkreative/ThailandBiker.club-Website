@@ -3,9 +3,16 @@
 {
   "name": "thailandbiker-club",
   "compatibility_date": "2026-05-09",
+  // Only renders share-link previews (`/places/<uuid>` etc.); see worker/index.js.
+  // Needs the `SUPABASE_ANON_KEY` secret (`npx wrangler secret put SUPABASE_ANON_KEY`).
+  "main": "./worker/index.js",
   "assets": {
     "directory": "./",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "binding": "ASSETS",
+    // The Worker runs only for these paths; every other URL is served straight
+    // from the static assets without invoking it.
+    "run_worker_first": ["/places/*", "/trips/*", "/events/*", "/guides/*"]
   }
 }
