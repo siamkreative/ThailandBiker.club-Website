@@ -32,10 +32,11 @@ Universal Links open the item in the app; the two verification files live in
 `.well-known/`:
 
 - `assetlinks.json` — package `com.thailandbikerclub.app`, with the SHA-256
-  fingerprint of the Play app-signing key (Play Console → Protected with Play →
-  Digital Asset Links JSON), which covers every install from Play. To verify
-  links on builds signed locally (upload key, or debug while testing), add that
-  key's fingerprint too.
+  fingerprints of the Play app-signing key (Play Console → Protected with Play →
+  Digital Asset Links JSON), which covers every install from Play, and the upload
+  key (`keytool -list -v -keystore android/app/upload-keystore.jks -alias upload`
+  in the app repo), for locally signed release builds. Add a debug key's
+  fingerprint only while testing.
 - `apple-app-site-association` — app ID `PD47FLA8L8.com.thailandbikerclub.app`
   and the four path patterns. It has no file extension, so `_headers` sets its
   `Content-Type: application/json`, which Apple requires.
