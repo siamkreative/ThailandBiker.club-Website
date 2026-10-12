@@ -10,9 +10,16 @@
  * already uses (so clean URLs, the 404 page, and the security headers behave
  * exactly as in production) and rewrites the caching headers on the way out.
  *
- * Used by `wrangler.dev.jsonc`; production still runs the plain static-asset
- * Worker configured in `wrangler.jsonc`.
+ * Share links (`/places/<uuid>` etc.) go to the production share-link Worker
+ * (`worker/index.js`), minus its edge cache, so previews can be tested locally.
+ *
+ * Used by `wrangler.dev.jsonc`; production runs `worker/index.js` directly
+ * (see `wrangler.jsonc`).
  */
+
+import { handleShare } from "../worker/index.js";
+
+const SHARE_PREFIX = /^\/(places|trips|events|guides)\//;
 
 export default {
   async fetch(request, env) {
@@ -22,7 +29,10 @@ export default {
     headers.delete("If-None-Match");
     headers.delete("If-Modified-Since");
 
-    const response = await env.ASSETS.fetch(new Request(request, { headers }));
+    const devRequest = new Request(request, { headers });
+    const response = SHARE_PREFIX.test(new URL(request.url).pathname)
+      ? await handleShare(devRequest, env)
+      : await env.ASSETS.fetch(devRequest);
 
     // ...and from the response, so nothing is cached or revalidated at all.
     const outHeaders = new Headers(response.headers);

@@ -3,11 +3,13 @@
 .claude
 .conductor
 .context
+.dev.vars*
 .gitignore
 .image-slots.state.json
 .wrangler
 CLAUDE.md
 README.md
 dev
+worker
 wrangler.jsonc
 wrangler.dev.jsonc

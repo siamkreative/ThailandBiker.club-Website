@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.thailandbikerclub.app",
+      "sha256_cert_fingerprints": [
+        "AC:82:F5:F7:61:44:4D:67:CE:04:04:58:19:6A:FD:FE:11:05:A5:1A:AC:B6:BB:2E:A9:CD:E6:19:80:83:0D:12",
+        "28:80:49:62:DF:33:57:12:5B:F2:2C:F3:C5:64:DB:7F:90:83:73:37:D2:9C:B0:6A:FC:5E:BF:6B:EC:99:18:F3"
+      ]
+    }
+  }
+]

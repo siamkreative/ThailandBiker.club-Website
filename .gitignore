@@ -3,3 +3,4 @@
 images/browse-*.jpg
 .wrangler/
 .conductor/settings.local.toml
+.dev.vars*
