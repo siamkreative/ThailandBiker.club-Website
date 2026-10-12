@@ -33,8 +33,8 @@ Universal Links open the item in the app; the two verification files live in
 
 - `assetlinks.json` — package `com.thailandbikerclub.app`, with the SHA-256
   fingerprints of the Play app-signing key and the upload key (Play Console →
-  Test and release → App integrity). Add a debug key's fingerprint here only
-  while testing locally.
+  Protected with Play, formerly App integrity). Add a debug key's fingerprint
+  here only while testing locally.
 - `apple-app-site-association` — app ID `PD47FLA8L8.com.thailandbikerclub.app`
   and the four path patterns. It has no file extension, so `_headers` sets its
   `Content-Type: application/json`, which Apple requires.
